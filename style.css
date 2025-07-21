@@ -3,7 +3,7 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 120px;
+  height: 100vh; /* Changed to 100vh for full height */
   margin: 0;
   padding: 0;
   background: #ffeef1;
@@ -11,7 +11,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   font-family: "Indie Flower", cursive;
   font-weight: 400;
   font-style: normal;
@@ -21,27 +20,25 @@ body {
 .envelope {
   border-radius: 3%;
   position: relative;
-  width: 90vw; /* ocupa até 90% da largura da tela */
-  max-width: 350px; /* mas nunca passa disso */
-  height: auto;
-  aspect-ratio: 1.6 / 1; /* mantém proporção parecida */
+  width: 350px;
+  height: 220px;
   background-color: #ff6f8f;
   clip-path: polygon(1 100%, 50% 0, 100% 100%);
   transition: all 0.5s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: cartaFlutuando 3s ease-in-out infinite;
+  animation: cartaFlutuando 1.8s ease-in-out infinite;
 }
 
-/*triangulo de cima*/
 
+/*triangulo de cima*/
 .flap {  
   border-radius: 8%;            
   position: absolute;
   top: 4px;
   left: 0;
-  width: 350px;
+  width: 100%; /* Changed to 100% for responsiveness */
   height: 110px;
   background-color: #ff6f8f;
   clip-path: polygon(0 0, 50% 100%, 100% 0);
@@ -51,7 +48,6 @@ body {
 }
 
 /*triangulo de baixo*/
-
 .flap-bottom {
   border-radius: 11%;
   position: absolute;
@@ -66,9 +62,7 @@ body {
   z-index: 5;
 }
 
-
-/*papel      */
-
+/*papel*/
 .letter {
   position: absolute;
   width: 270px;
@@ -88,10 +82,8 @@ body {
   overflow-y: auto;
 }
 
-
 .envelope.aberta .flap {
   transform: rotateX(180deg);
-
 }
 
 .envelope.aberta .letter {
@@ -103,11 +95,13 @@ body {
 
 .buttons {
   margin-top: 30px;
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically on small screens */
 }
 
 button {
   padding: 10px 20px;
-  margin: 0 10px;
+  margin: 5px 0; /* Adjusted margin for vertical stacking */
   background-color: #ff9fb2;
   border: none;
   border-radius: 20px;
@@ -125,8 +119,7 @@ button:hover {
   background-color: #ff829b;
 }
 
-/*triangulo lado esquerdo e direito      */
-
+/*triangulo lado esquerdo e direito*/
 .bottom-left, .bottom-right {
   border-radius: 9%;
   position: absolute;
@@ -140,13 +133,11 @@ button:hover {
 .bottom-left {
   left: 0;
   clip-path: polygon(0 0, 100% 50%, 0 100%);
-
 }
 
 .bottom-right {
   right: 0;
   clip-path: polygon(100% 0, 0 50%, 100% 100%);
-;
 }
 
 .hearts-container {
@@ -168,8 +159,6 @@ button:hover {
   background-position: center;
   animation: floatUpWavy 5s linear forwards;
 }
-
-
 
 @keyframes floatUp {
   0% {
@@ -226,3 +215,17 @@ button:hover {
   100% { transform: translateY(0); }
 }
 
+/* Media Queries for additional responsiveness */
+@media (max-width: 600px) {
+  .envelope {
+    width: 90%; /* Adjust envelope width for smaller screens */
+  }
+
+  .letter {
+    width: 95%; /* Adjust letter width for smaller screens */
+  }
+
+  button {
+    width: 100%; /* Make buttons full width on small screens */
+  }
+}
